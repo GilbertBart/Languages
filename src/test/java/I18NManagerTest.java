@@ -56,7 +56,8 @@ public class I18NManagerTest {
         String msg2 = I18NManager.getInstance().getText("ca","l2");
         Assert.assertEquals("adéu", msg2);
 
-        String msg3 = I18NManager.getInstance().getText("XXXX","l2");
+        String msg3 = I18NManager.getInstance().getText("eng","l1");
+        Assert.assertEquals("hello", msg3);
     }
 
 }
