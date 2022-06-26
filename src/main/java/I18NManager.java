@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class I18NManager {
@@ -9,6 +10,8 @@ public class I18NManager {
     ResourceBundle ca;
     ResourceBundle pt;
     ResourceBundle fr;
+
+    HashMap <String, ResourceBundle> hm = new HashMap <String, ResourceBundle> ();
 
 
 
@@ -28,6 +31,21 @@ public class I18NManager {
 
     public String getText(String language, String key) {
         String ret = null;
+        ResourceBundle rb = hm.get(language);
+
+        if (rb!=null)
+        {
+            ret=rb.getString(key);
+        }
+        else{
+            rb=ResourceBundle.getBundle(language);
+            hm.put(language,rb);
+        }
+
+
+
+
+        //String ret = null;
         if (language.equals("ca")) {
             ret = this.ca.getString(key);
         }
@@ -45,7 +63,7 @@ public class I18NManager {
         }
         else if(language.equals("pt"))
         {
-            ret=this.pt.getString("pt");
+            ret=this.pt.getString(key);
         }
 
         return ret;
